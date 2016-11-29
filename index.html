@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+
+    <link rel="manifest" href="manifest.json">
+
+    <!-- un-comment this code to enable service worker
+    <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('service-worker.js')
+          .then(() => console.log('service worker installed'))
+          .catch(err => console.log('Error', err));
+      }
+    </script>-->
+
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="js/ng-cordova.min.js"></script>
+    <script src="cordova.js"></script>
+
+    <!-- your app's js -->
+    <script src="js/app.js"></script>
+    <script src="js/index.controller.js"></script>
+  </head>
+  <body ng-app="starter"  ng-controller="IndexController as IndexCtrl">
+
+    <ion-pane>
+      <ion-content>
+        <div class="list list-inset">
+          <label class="item item-input">
+            <input type="text" placeholder="Note" ng-model="IndexCtrl.note">
+          </label>   
+          <button class="button button-block button-balanced" ng-click="IndexCtrl.Add(IndexCtrl.note)">
+          Add
+        </button>       
+        </div>
+        <ion-list>
+          <ion-checkbox class="checkbox-balanced item-text-wrap" ng-repeat="item in IndexCtrl.itens" 
+          ng-model="checkStatus"
+          ng-change="IndexCtrl.CheckNote(item.id)"
+          ng-click="IndexCtrl.showToast('Good job!', 'short', 'top')">
+          {{item.note}}
+          </ion-checkbox>
+        </ion-list>
+      </ion-content>
+    </ion-pane>
+  </body>
+</html>
